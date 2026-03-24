@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python demo_app.py
+    command: python src/apps/demo_app.py
     environment:
       - DEMO_PORT=5001
     ports:
@@ -15,10 +15,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python waf_simulator.py
+    command: python src/apps/waf_simulator.py
     environment:
       - BACKEND_URL=http://demo-app:5001
       - WAF_PORT=8080
+      - WAF_MODEL_PATH=/app/models/training_model.pkl
       - WAF_LOG_FILE=/app/logs/waf_events.jsonl
     volumes:
       - waf_logs:/app/logs
@@ -31,7 +32,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python dashboard.py
+    command: python src/apps/dashboard.py
     environment:
       - WAF_METRICS_URL=http://waf:8080/metrics
       - WAF_EVENTS_URL=http://waf:8080/events?limit=25

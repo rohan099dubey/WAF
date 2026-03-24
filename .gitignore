@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE/editor
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Runtime logs and artifacts
+logs/
+*.log
+*.jsonl
+
+# Legacy generated outputs (old layout)
+Data_Collection/2bad_req.csv
+Testing_Data/evaluation_results.csv
+Testing_Data/evaluation_summary.json
+Testing_Data/evaluation_report.md
+Testing_Data/predicted_data.csv
+Testing_Data/Testing_result.csv
+
+# Generated outputs (new layout)
+data/testing/evaluation_results.csv
+data/testing/evaluation_summary.json
+data/testing/evaluation_report.md
+data/testing/predicted_data.csv
+data/testing/Testing_result.csv
+
+# Notebook checkpoints
+.ipynb_checkpoints/

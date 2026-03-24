@@ -1,8 +1,0 @@
-home
-products
-latest offers
-simple search
-hello world
-laptop price
-contact us
-about page

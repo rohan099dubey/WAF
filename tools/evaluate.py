@@ -64,11 +64,11 @@ def run_case(base_url: str, payload: str, label: str) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run WAF simulation evaluation")
     parser.add_argument("--base-url", default="http://localhost:8080", help="WAF URL")
-    parser.add_argument("--good-file", default="Testing_Data/payloads_good.txt")
-    parser.add_argument("--bad-file", default="Testing_Data/payloads_bad.txt")
-    parser.add_argument("--output-csv", default="Testing_Data/evaluation_results.csv")
-    parser.add_argument("--summary-json", default="Testing_Data/evaluation_summary.json")
-    parser.add_argument("--report-md", default="Testing_Data/evaluation_report.md")
+    parser.add_argument("--good-file", default="data/testing/payloads_good.txt")
+    parser.add_argument("--bad-file", default="data/testing/payloads_bad.txt")
+    parser.add_argument("--output-csv", default="data/testing/evaluation_results.csv")
+    parser.add_argument("--summary-json", default="data/testing/evaluation_summary.json")
+    parser.add_argument("--report-md", default="data/testing/evaluation_report.md")
     args = parser.parse_args()
 
     good_payloads = read_payloads(Path(args.good_file))

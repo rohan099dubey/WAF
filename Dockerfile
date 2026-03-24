@@ -9,4 +9,4 @@ COPY . .
 
 ENV PYTHONUNBUFFERED=1
 
-CMD ["python", "waf_simulator.py"]
+CMD ["python", "src/apps/waf_simulator.py"]
